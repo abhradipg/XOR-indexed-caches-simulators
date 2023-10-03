@@ -1,0 +1,721 @@
+{
+"adi": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/stencils/adi/adi.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [11957038000],
+"hitCounts": [10211407000],
+"missCounts": [1745631000],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1301999,
+"timeSec":1301,
+"timeMin":21
+}
+,
+"fdtd-2d": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/stencils/fdtd-2d/fdtd-2d.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [8390203000],
+"hitCounts": [7790502500],
+"missCounts": [599700500],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":831500,
+"timeSec":831,
+"timeMin":13
+}
+,
+"heat-3d": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/stencils/heat-3d/heat-3d.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [18073352000],
+"hitCounts": [17234372000],
+"missCounts": [838980000],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1766156,
+"timeSec":1766,
+"timeMin":29
+}
+,
+"jacobi-1d": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/stencils/jacobi-1d/jacobi-1d.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [7992000],
+"hitCounts": [7991500],
+"missCounts": [500],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":694,
+"timeSec":0,
+"timeMin":0
+}
+,
+"jacobi-2d": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/stencils/jacobi-2d/jacobi-2d.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [10108824000],
+"hitCounts": [9265122000],
+"missCounts": [843702000],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1005932,
+"timeSec":1005,
+"timeMin":16
+}
+,
+"seidel-2d": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/stencils/seidel-2d/seidel-2d.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [19960020000],
+"hitCounts": [19210770000],
+"missCounts": [749250000],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1760146,
+"timeSec":1760,
+"timeMin":29
+}
+,
+"deriche": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/medley/deriche/deriche.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [176947200],
+"hitCounts": [136028160],
+"missCounts": [40919040],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":20831,
+"timeSec":20,
+"timeMin":0
+}
+,
+"2mm": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/kernels/2mm/2mm.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [6626640000],
+"hitCounts": [4808104643],
+"missCounts": [1818535357],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":757697,
+"timeSec":757,
+"timeMin":12
+}
+,
+"3mm": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/kernels/3mm/3mm.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [10802590000],
+"hitCounts": [7758460916],
+"missCounts": [3044129084],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1286065,
+"timeSec":1286,
+"timeMin":21
+}
+,
+"atax": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/kernels/atax/atax.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [31924000],
+"hitCounts": [30295059],
+"missCounts": [1628941],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":2935,
+"timeSec":2,
+"timeMin":0
+}
+,
+"bicg": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/kernels/bicg/bicg.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [31924000],
+"hitCounts": [30427995],
+"missCounts": [1496005],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":2947,
+"timeSec":2,
+"timeMin":0
+}
+,
+"doitgen": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/kernels/doitgen/doitgen.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [2160480000],
+"hitCounts": [1600933692],
+"missCounts": [559546308],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":227649,
+"timeSec":227,
+"timeMin":3
+}
+,
+"mvt": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/kernels/mvt/mvt.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [32000000],
+"hitCounts": [26951395],
+"missCounts": [5048605],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":3186,
+"timeSec":3,
+"timeMin":0
+}
+,
+"gemm": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/gemm/gemm.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [5282200000],
+"hitCounts": [5067717871],
+"missCounts": [214482129],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":510021,
+"timeSec":510,
+"timeMin":8
+}
+,
+"gemver": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/gemver/gemver.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [56006000],
+"hitCounts": [49450970],
+"missCounts": [6555030],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":5447,
+"timeSec":5,
+"timeMin":0
+}
+,
+"gesummv": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/gesummv/gesummv.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [13526500],
+"hitCounts": [12989387],
+"missCounts": [537113],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1280,
+"timeSec":1,
+"timeMin":0
+}
+,
+"symm": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/symm/symm.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [3601200000],
+"hitCounts": [2374783122],
+"missCounts": [1226416878],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":423627,
+"timeSec":423,
+"timeMin":7
+}
+,
+"syr2k": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/syr2k/syr2k.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [4325041200],
+"hitCounts": [2851786320],
+"missCounts": [1473254880],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":512770,
+"timeSec":512,
+"timeMin":8
+}
+,
+"syrk": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/syrk/syrk.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [2883841200],
+"hitCounts": [2192905550],
+"missCounts": [690935650],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":327152,
+"timeSec":327,
+"timeMin":5
+}
+,
+"trmm": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/blas/trmm/trmm.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [2400000000],
+"hitCounts": [1313985003],
+"missCounts": [1086014997],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":309345,
+"timeSec":309,
+"timeMin":5
+}
+,
+"cholesky": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/solvers/cholesky/cholesky.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [5339333000],
+"hitCounts": [5126516998],
+"missCounts": [212816002],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":515687,
+"timeSec":515,
+"timeMin":8
+}
+,
+"durbin": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/solvers/durbin/durbin.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [13997001],
+"hitCounts": [13719479],
+"missCounts": [277522],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1372,
+"timeSec":1,
+"timeMin":0
+}
+,
+"gramschmidt": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/solvers/gramschmidt/gramschmidt.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [5761920600],
+"hitCounts": [2872193404],
+"missCounts": [2889727196],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":715816,
+"timeSec":715,
+"timeMin":11
+}
+,
+"lu": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/solvers/lu/lu.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [10664665000],
+"hitCounts": [7924463535],
+"missCounts": [2740201465],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1212040,
+"timeSec":1212,
+"timeMin":20
+}
+,
+"ludcmp": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/solvers/ludcmp/ludcmp.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [5347339000],
+"hitCounts": [2613699966],
+"missCounts": [2733639034],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":729850,
+"timeSec":729,
+"timeMin":12
+}
+,
+"trisolv": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/linear-algebra/solvers/trisolv/trisolv.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [8006000],
+"hitCounts": [7663297],
+"missCounts": [342703],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":742,
+"timeSec":0,
+"timeMin":0
+}
+,
+"correlation": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/datamining/correlation/correlation.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [4056012600],
+"hitCounts": [2037104025],
+"missCounts": [2018908575],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":508918,
+"timeSec":508,
+"timeMin":8
+}
+,
+"covariance": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/datamining/covariance/covariance.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [4049046600],
+"hitCounts": [2030267175],
+"missCounts": [2018779425],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":505231,
+"timeSec":505,
+"timeMin":8
+}
+,
+"floyd-warshall": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/medley/floyd-warshall/floyd-warshall.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [153664000000],
+"hitCounts": [151797179024],
+"missCounts": [1866820976],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":13734251,
+"timeSec":13734,
+"timeMin":228
+}
+,
+"nussinov": {
+"source":"/home/morelli/warping-cache-simulation/benchmarks/polybench-large/medley/nussinov/nussinov.c",
+"cacheLevel0": 
+{
+"cacheSize":32768,
+"lineSize":64,
+"associativity":8,
+"nLines":512,
+"nSets":64,
+"replacementPolicy":"fifo",
+"writePolicy":"write-back-write-allocate"
+},
+"warping":false,
+"heuristics":false,
+"accessCounts": [18282245009],
+"hitCounts": [15806033772],
+"missCounts": [2476211237],
+"warpedAccessPercentages": [0.00],
+"notWarpedAccessPercentages": [100.00],
+"timeMSec":1881796,
+"timeSec":1881,
+"timeMin":31
+}
+}

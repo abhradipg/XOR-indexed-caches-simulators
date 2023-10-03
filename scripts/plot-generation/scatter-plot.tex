@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+    \usetikzlibrary{
+        arrows,
+        arrows.meta,
+        backgrounds,
+        calc,
+        chains,
+        decorations,
+        decorations.pathreplacing,
+        decorations.pathmorphing,
+        decorations.markings,
+        fit,
+        matrix,
+        patterns,
+        positioning,
+        shadows,
+        shapes}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{units}
+\pgfplotsset{width=8cm,height=8cm,compat=1.12}
+
+\begin{document}
+
+\newcommand{\maxXY}{300000000}
+\newcommand{\markScale}{0.60}
+\newcommand{\arrowthickness}{very thin}
+\newcommand{\scatterPlot}{
+	\begin{tikzpicture}[scale=0.80, transform shape]
+	\begin{loglogaxis}[
+		ymin=0.35, ymax=\maxXY,
+		xmin=0.35, xmax=\maxXY,
+		xlabel={non-warping simulation time [ms]},
+		ylabel={warping simulation time [ms]},
+		legend style={
+			at={(1.05,0.0)},
+			anchor=south west}
+	]
+
+	DRAW_ARROWS_WILL_BE_INSERTED_HERE
+
+	\addplot[
+	scatter,
+	only marks,
+	point meta=explicit symbolic,
+	scatter/classes={
+		2mm_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		2mm_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		3mm_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		3mm_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		adi_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		adi_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		atax_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		atax_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		bicg_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		bicg_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		cholesky_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		cholesky_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		correlation_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		correlation_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		covariance_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		covariance_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		deriche_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		deriche_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		doitgen_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		doitgen_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		durbin_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		durbin_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		fdtd-2d_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		fdtd-2d_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		floyd-warshall_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		floyd-warshall_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		gemm_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		gemm_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		gemver_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		gemver_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		gesummv_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		gesummv_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		gramschmidt_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		gramschmidt_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		heat-3d_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		heat-3d_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		jacobi-1d_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		jacobi-1d_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		jacobi-2d_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		jacobi-2d_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		lu_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		lu_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		ludcmp_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		ludcmp_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		mvt_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		mvt_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		nussinov_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		nussinov_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		seidel-2d_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		seidel-2d_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		symm_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		symm_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		syr2k_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		syr2k_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		syrk_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		syrk_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		trisolv_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		trisolv_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale},%
+		trmm_SMALLERDATASET={mark=*, draw=blue!80!black, fill=blue, scale=\markScale},%
+		trmm_LARGERDATASET={mark=*, draw=green!80!black, fill=green, scale=\markScale}
+	},
+	]
+	table[x=nowarp, y=warp, meta=kernel] {DATA_FILE_NAME_WILL_BE_INSERTED_HERE};
+	\addplot[black, domain=0.01:\maxXY, samples=2]{x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{10*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{100*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{1000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{10000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{100000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{1000000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{10000000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{100000000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{1000000000*x};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/10};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/100};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/1000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/10000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/100000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/1000000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/10000000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/100000000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/1000000000};
+	\addplot[gray, domain=0.01:\maxXY, samples=2]{x/10000000000};
+
+	\legend{SMALLERDATASET,LARGERDATASET}
+
+	\end{loglogaxis}
+	\end{tikzpicture}
+}
+
+\begin{figure}
+\centering
+\scatterPlot
+\hskip 2pt
+\vspace{-3mm}
+\caption{Figure 7 from our paper: L1 warping and non-warping simulation times for problem sizes SMALLERDATASET and LARGERDATASET.}
+\label{fig:scatter-plot-l-xl}
+\vspace{-3mm}
+\end{figure}
+
+\end{document}
