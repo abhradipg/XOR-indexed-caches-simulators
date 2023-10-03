@@ -214,6 +214,7 @@ typedef struct d4_cache_struct {
 	int assoc;		/* set by the user */
 
 	int numsets;		/* this one is derived, not set by the user */
+	int *setmapping;
 
 	/*
 	 * Interconnection of caches

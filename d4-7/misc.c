@@ -101,6 +101,27 @@ d4new (d4cache *larger)
  * The call to d4setup must occur before any calls to d4ref.
  * The return value is zero for success.
  */
+
+void
+compute_set_mapping(d4cache *c){
+	c->setmapping = malloc((c->numsets)*(c->numsets));
+	printf("num of sets %d",c->numsets);
+	int numset=c->numsets;
+	int m=0;
+	int k=0;
+	do{
+       
+	}while(numsets!=0)
+	if(c->numsets%2==0){
+		int *generator = malloc(c->numsets*c->numsets);
+        for(int i=0;i<c->num;i++){
+			for(int j=0;j<)
+		}
+	}
+	else{
+
+	}
+}
 int
 d4setup()
 {
@@ -196,6 +217,8 @@ d4setup()
 
 			/* it looks ok, now initialize */
 			c->numsets = (1<<c->lg2size) / ((1<<c->lg2blocksize) * c->assoc);
+
+			compute_set_mapping(c);
 
 			c->stack = calloc (c->numsets+((c->flags&D4F_CCC)!=0),
 					   sizeof(d4stackhead));
