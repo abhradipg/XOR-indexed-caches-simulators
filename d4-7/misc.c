@@ -179,7 +179,7 @@ compute_set_mapping(d4cache *c){
                 index|=(k_bit<<(m-k-1));
             }
             index^=j;
-            setmapping[i*c->numsets+j]=index;
+            c->setmapping[i*c->numsets+j]=index;
         }
     }
 
@@ -262,8 +262,9 @@ d4setup()
 			}
 		}
 
-		if ((c->flags & D4F_MEM) != 0)
+		if ((c->flags & D4F_MEM) != 0){
 			c->numsets = 1;	/* not used, but helps avoid compiler warnings */
+			c->lg2sets = 0;}
 		else {
 			/* check the things the user should have set */
 			if (c->lg2blocksize < 0)
@@ -287,7 +288,7 @@ d4setup()
 
 			/* it looks ok, now initialize */
 			c->numsets = (1<<c->lg2size) / ((1<<c->lg2blocksize) * c->assoc);
-
+            c->lg2sets=0;
 			compute_set_mapping(c);
 
 			c->stack = calloc (c->numsets+((c->flags&D4F_CCC)!=0),
@@ -835,7 +836,7 @@ d4copyback (d4cache *c, const d4memref *m, int prop)
 		c->pending = newm;
 	}
 	if (m != NULL && m->size > 0) {		/* copy back just 1 block */
-		int setnumber = D4ADDR2SET (c, m.address);
+		int setnumber = D4ADDR2SET (c, m->address);
 	    assert(setnumber<=c->numsets&&setnumber>=0);
 		ptr = d4_find (c, setnumber, D4ADDR2BLOCK (c, m->address));
 		if (ptr != NULL && (ptr->dirty & ptr->valid) != 0)
