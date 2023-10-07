@@ -104,41 +104,94 @@ d4new (d4cache *larger)
 
 void
 compute_set_mapping(d4cache *c){
-	c->setmapping = malloc((c->numsets)*(c->numsets));
-	printf("num of sets %d",c->numsets);
-	int numset=c->numsets;
-	int m=0;   //m is number of bits in setindex
-	int k=0;
+	c->setmapping = malloc(sizeof(__uint32_t)*(c->numsets)*(c->numsets));
+	//printf("num of sets %u \n",(__uint32_t)numsets);
+	__uint32_t numset=(__uint32_t)c->numsets;
+	__uint32_t m=0;   //m is number of bits in setindex
+	__uint32_t k=0;
+
 	do{
         m+=1;
 		numset/=2;
-	}while(numsets!=0)
-    assert( m<32 && m>0);
+	}while(numset!=1);
 
-    uint  *generator = malloc(sizeof(uint)*m);
+    assert( m<32 && m>0);
+    //printf("number of bits %u\n",m);
+    c->lg2sets=m;
+    __uint32_t *generator = malloc(sizeof(__uint32_t)*m);
     k=m/2;
 
     //initialize all columns of generator matrix to 0
-	for(int i=0;i<m;i++){
-		generator[i]=(uint)0;
+	for(__uint32_t i=0;i<m;i++){
+		generator[i]=(__uint32_t)0;
 	}
 
 	if(m%2!=0){
-        for(int i=0;i<m;i++){
-			for(int j=0;j<m;j++){
-				uint currentbit=0;
-				if(i<=j){
+        for(__uint32_t i=0;i<m;i++){
+			for(__uint32_t j=0;j<m;j++){
+				__uint32_t currentbit=0;
+				if((i+j)<m){
 					//set the current bit
-                    currentbit=currentbit|((uint)1<<(sizeof(uint)-m+i));
-                    generator[i]|=currentbit;
+                    currentbit=currentbit|((__uint32_t)1<<(m-1-i));
+                    generator[j]|=currentbit;
 				}
 			}
 		}
 	}
 	else{
-
+        for(__uint32_t i=0;i<m;i++){
+			for(__uint32_t j=0;j<m;j++){
+				__uint32_t currentbit=0;
+                if(j==(m-i-1)){
+                    currentbit=currentbit|((__uint32_t)1<<(m-1-i));
+                    generator[j]|=currentbit;
+				}
+				else if(i>=k&&j>=k&&i>=j){
+                    currentbit=currentbit|((__uint32_t)1<<(m-1-i));
+                    generator[j]|=currentbit;
+				}
+			}
+		}
 	}
+	/*for(__uint32_t i=0;i<m;i++){
+		printf("%p\n",generator[i]);
+	}*/
+    //i is upper bits
+    for(__uint32_t i=0;i<c->numsets;i++){
+        //j is lower bits
+        for(__uint32_t j=0;j<c->numsets;j++){
+            //computing for [i,j]
+            __uint32_t currentaddr=(i<<m)+j;
+            __uint32_t index=0;
+            __uint32_t temp;
+            __uint32_t k_bit=0;
+            //generate the kth bit
+            for(__uint32_t k=0;k<m;k++){
+                temp=i&generator[k];
+                k_bit=0;
+                while(temp!=0){
+                    if(temp%2!=0){
+                        k_bit++;
+                        k_bit=k_bit%2;
+                    }
+                    temp/=2;
+                }
+                index|=(k_bit<<(m-k-1));
+            }
+            index^=j;
+            setmapping[i*c->numsets+j]=index;
+        }
+    }
+
+    /*for(__uint32_t i=0;i<numsets;i++){
+        for(__uint32_t j=0;j<numsets;j++){
+            printf("%u  ",setmapping[i*numsets+j]);
+        }
+        printf("end \n");
+    }*/
 }
+
+
 int
 d4setup()
 {
@@ -782,7 +835,9 @@ d4copyback (d4cache *c, const d4memref *m, int prop)
 		c->pending = newm;
 	}
 	if (m != NULL && m->size > 0) {		/* copy back just 1 block */
-		ptr = d4_find (c, D4ADDR2SET (c, m->address), D4ADDR2BLOCK (c, m->address));
+		int setnumber = D4ADDR2SET (c, m.address);
+	    assert(setnumber<=c->numsets&&setnumber>=0);
+		ptr = d4_find (c, setnumber, D4ADDR2BLOCK (c, m->address));
 		if (ptr != NULL && (ptr->dirty & ptr->valid) != 0)
 			d4_wbblock (c, ptr, c->lg2subblocksize);
 	}
@@ -835,6 +890,7 @@ d4invalidate (d4cache *c, const d4memref *m, int prop)
 	if (m != NULL && m->size > 0) {		/* invalidate just one block */
 		d4addr blockaddr = D4ADDR2BLOCK (c, m->address);
 		stacknum = D4ADDR2SET (c, m->address);
+		assert(stacknum<=c->numsets&&stacknum>=0);
 		ptr = d4_find (c, stacknum, blockaddr);
 		if (ptr != NULL)
 			d4_invblock (c, stacknum, ptr);
