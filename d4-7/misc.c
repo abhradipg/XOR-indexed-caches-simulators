@@ -107,15 +107,32 @@ compute_set_mapping(d4cache *c){
 	c->setmapping = malloc((c->numsets)*(c->numsets));
 	printf("num of sets %d",c->numsets);
 	int numset=c->numsets;
-	int m=0;
+	int m=0;   //m is number of bits in setindex
 	int k=0;
 	do{
-       
+        m+=1;
+		numset/=2;
 	}while(numsets!=0)
-	if(c->numsets%2==0){
-		int *generator = malloc(c->numsets*c->numsets);
-        for(int i=0;i<c->num;i++){
-			for(int j=0;j<)
+    assert( m<32 && m>0);
+
+    uint  *generator = malloc(sizeof(uint)*m);
+    k=m/2;
+
+    //initialize all columns of generator matrix to 0
+	for(int i=0;i<m;i++){
+		generator[i]=(uint)0;
+	}
+
+	if(m%2!=0){
+        for(int i=0;i<m;i++){
+			for(int j=0;j<m;j++){
+				uint currentbit=0;
+				if(i<=j){
+					//set the current bit
+                    currentbit=currentbit|((uint)1<<(sizeof(uint)-m+i));
+                    generator[i]|=currentbit;
+				}
+			}
 		}
 	}
 	else{
