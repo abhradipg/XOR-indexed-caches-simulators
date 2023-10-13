@@ -625,7 +625,6 @@ d4ref (d4cache *c, d4memref mr)
 	const d4memref m = d4_splitm (c, mr, blockaddr);
 	const int atype = D4BASIC_ATYPE (m.accesstype);
 	const int setnumber = D4ADDR2SET (c, m.address);
-	assert(setnumber<=c->numsets&&setnumber>=0);
 	const int ronly = D4CUSTOM && (D4VAL (c, flags) & D4F_RO) != 0; /* conservative */
 	const int walloc = !ronly && atype == D4XWRITE && D4VAL (c, wallocf) (c, m);
 	const int sbbits = D4ADDR2SBMASK (c, m);

@@ -179,6 +179,8 @@ compute_set_mapping(d4cache *c){
                 index|=(k_bit<<(m-k-1));
             }
             index^=j;
+			assert(index<c->numsets);
+			assert(index>=0);
             c->setmapping[i*c->numsets+j]=index;
         }
     }
@@ -837,7 +839,6 @@ d4copyback (d4cache *c, const d4memref *m, int prop)
 	}
 	if (m != NULL && m->size > 0) {		/* copy back just 1 block */
 		int setnumber = D4ADDR2SET (c, m->address);
-	    assert(setnumber<=c->numsets&&setnumber>=0);
 		ptr = d4_find (c, setnumber, D4ADDR2BLOCK (c, m->address));
 		if (ptr != NULL && (ptr->dirty & ptr->valid) != 0)
 			d4_wbblock (c, ptr, c->lg2subblocksize);
@@ -891,7 +892,6 @@ d4invalidate (d4cache *c, const d4memref *m, int prop)
 	if (m != NULL && m->size > 0) {		/* invalidate just one block */
 		d4addr blockaddr = D4ADDR2BLOCK (c, m->address);
 		stacknum = D4ADDR2SET (c, m->address);
-		assert(stacknum<=c->numsets&&stacknum>=0);
 		ptr = d4_find (c, stacknum, blockaddr);
 		if (ptr != NULL)
 			d4_invblock (c, stacknum, ptr);
