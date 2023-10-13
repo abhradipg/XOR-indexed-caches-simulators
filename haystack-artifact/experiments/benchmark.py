@@ -55,6 +55,32 @@ class Benchmark(ABC):
     else:
       return df
 
+  def run2(self, polybench, output, iterations, timeout, benchmark):
+    ks = [abs_path(polybench, benchmark.strip())]
+    print("Measuring ", ks)
+
+    utilities = abs_path(polybench, "utilities")
+    columns = self.gen_header(iterations)
+    result = []
+
+    for (i, k) in enumerate(ks):
+      name = kernel_name(k)
+      tmp = self.prepare(k, utilities)
+
+      print("Measuring " + name + "...")
+      sys.stdout.flush()
+      for j in range(iterations):
+        s = self.measure(tmp, utilities, timeout)
+        print([name] + s)
+        result.append([name] + s)
+
+      self.cleanup(tmp)
+
+    df = pd.DataFrame(data=result, columns=columns)
+    if output:
+      df.to_csv(output, mode='a', index=False)
+    else:
+      return df
 
 def abs_path(*paths):
   return os.path.abspath(os.path.join(*paths))
