@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <unordered_map>
 #include <vector>
+#include <cstdint>
 
 #include "CacheAccess.hpp"
 #include "CacheState/CacheLine.hpp"
@@ -48,6 +49,8 @@ private:
   const size_t nLines;
   const size_t nSets;
 
+  std::vector<uint32_t> setMapping;
+
   std::vector<std::unique_ptr<FullyAssociativeCacheState>> cacheSetStates;
 
   size_t lastAccessedSetIndex = 0;
@@ -59,6 +62,10 @@ private:
   void RotateCacheSetsRight(size_t nRotations);
 
   void RotateCacheSetsLeft(size_t nRotations);
+
+  void ComputeXORSetIndex();
+
+  int clog2(size_t x);
 
   [[nodiscard]] size_t ComputeSetIndex(const CacheAccess &access) const;
 

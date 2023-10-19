@@ -10,6 +10,7 @@ SetAssociativeCacheState::SetAssociativeCacheState(
   assert(GlobalVars::lineSize == cacheSettings.lineSize);
   assert(GlobalVars::nCacheSetsByCacheLevel[this->cacheLevel] ==
          cacheSettings.nCacheSets);
+  computeXORSetIndex(const nSets); // build the map
 }
 
 CacheAccessResult
@@ -76,9 +77,101 @@ void SetAssociativeCacheState::RotateCacheSetsLeft(size_t nRotations) {
               this->cacheSetStates.end());
 }
 
+
+void SetAssociativeCacheState::ComputeXORSetIndex() {
+    assert(this->nSets > 0);
+    size_t nSets = this->nSets;
+    this->setMapping.reserve(nSets * nSets);
+    size_t numset = (size_t)nSets;
+    size_t m = 0;   //m is number of bits in setindex
+    size_t k = 0;
+
+    do {
+      m += 1;
+      numset /= 2;
+    } while(numset != 1);
+
+
+    std::vector<size_t> generator(sizeof(size_t)* m);
+    k = m/2;
+
+    //initialize all columns of generator matrix to 0
+    for(size_t i = 0;i < m;i++){
+      generator[i] = (size_t)0;
+    }
+
+    if(m%2 != 0){
+      for(size_t i = 0;i < m;i++){
+	for(size_t j = 0;j < m;j++){
+	  size_t currentbit = 0;
+	  if((i+j) < m){
+	    //set the current bit
+	    currentbit = currentbit | ((size_t)1 << (m-1-i));
+	    generator[j] |= currentbit;
+	  }
+	}
+      }
+    }
+    else{
+      for(size_t i = 0;i < m;i++){
+	for(size_t j = 0;j < m;j++){
+	  size_t currentbit = 0;
+	  if(j == (m - i - 1)){
+	    currentbit = currentbit | ((size_t)1 << (m-1-i));
+	    generator[j] |= currentbit;
+	  }
+	  else if(i >= k && j >= k && i >= j){
+	    currentbit = currentbit | ((size_t)1 << (m-1-i));
+	    generator[j] |= currentbit;
+	  }
+	}
+      }
+    }
+    
+    for(size_t i=0;i < nSets;i++){
+      //j is lower bits
+      for(size_t j=0;j < nSets;j++){
+	//computing for [i,j]
+	size_t currentaddr = (i<<m)+j;
+	size_t index = 0;
+	size_t temp;
+	size_t k_bit = 0;
+	//generate the kth bit
+	for(size_t k = 0; k<m ;k++){
+	  temp = i & generator[k];
+	  k_bit = 0;
+	  while(temp != 0){
+	    if(temp % 2 != 0){
+	      k_bit++;
+	      k_bit = k_bit%2;
+	    }
+	    temp /= 2;
+	  }
+                index |= (k_bit<<(m-k-1));
+	}
+	index ^= j;
+	this->setMapping[i*nSets+j] = index;
+      }
+    }
+}
+
+int
+SetAssociativeCacheState::clog2 (size_t x){
+  int i;
+  for (i = -1;  x != 0;  i++)
+    x >>= 1;
+  return i;
+}
+
 size_t
 SetAssociativeCacheState::ComputeSetIndex(const CacheAccess &access) const {
-  return access.GetMemoryBlockId() % this->nSets;
+    assert(this->nSets > 0);
+    size_t nSets = this->nSets;
+    size_t lowerBits = access.GetMemoryBlockId() % nSets;
+    size_t nBits = clog2(nSets);
+    nBits = nBits < 0 ? 0: nBits;
+    size_t higherBits = (access.GetMemoryBlockId() >> nBits) % nSets;
+    return this->setMapping[higherBits * nSets + lowerBits]; //mapping is computed in the constructor
 }
 
 std::vector<std::unique_ptr<FullyAssociativeCacheState>>
