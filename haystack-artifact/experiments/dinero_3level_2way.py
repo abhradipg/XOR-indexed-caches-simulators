@@ -7,7 +7,7 @@ import sys
 
 BENCHMARK = sys.argv[1]
 POLYBENCH = "./benchmarks/polybench_large/"
-BINARY = "./data/polybench_large/2way/"
+BINARY = "./executables/3level/2way/"
 OUTPUT = "./data/polybench_large/3level_2way.csv"
 ITERATIONS = 1
 
