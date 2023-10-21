@@ -6,6 +6,7 @@ import re
 import sys
 
 BENCHMARK = sys.argv[1]
+
 POLYBENCH = "./benchmarks/polybench_large/"
 BINARY = "./data/polybench_large/"
 OUTPUT = "./data/polybench_large/acc_din_euler_assoc_O2.csv"
