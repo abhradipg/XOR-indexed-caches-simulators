@@ -214,6 +214,8 @@ typedef struct d4_cache_struct {
 	int assoc;		/* set by the user */
 
 	int numsets;		/* this one is derived, not set by the user */
+	int *setmapping;
+	int lg2sets;
 
 	/*
 	 * Interconnection of caches
@@ -322,6 +324,8 @@ typedef struct d4_cache_struct {
 #define D4_TRIGGER_bogus_assoc 0
 #define D4_CACHE_bogus_numsets 0
 #define D4_TRIGGER_bogus_numsets 0
+#define D4_CACHE_bogus_lg2sets 0
+#define D4_TRIGGER_bogus_lg2sets 0
 #define D4_CACHE_bogus_replacementf NULL
 #define D4_TRIGGER_bogus_replacementf 0
 #define D4_CACHE_bogus_prefetchf NULL
@@ -350,9 +354,18 @@ typedef struct d4_cache_struct {
 
 #define D4ADDR2SUBBLOCK(cache,addr) /* byte addr of subblock for ref */   \
 		((addr) & ~D4LG2MASK(D4VAL(cache,lg2subblocksize)))
+/*
+#define D4ADDR2SET(cache,addr)	 which set does addr go in? 	      \
+		(((addr)>>D4VAL(cache,lg2blocksize)) % D4VAL(cache,numsets))
+*/
+#define D4XORUPPERBITS(cache,addr)   \
+		(((addr)>>(D4VAL(cache,lg2blocksize)+D4VAL(cache,lg2sets))) % D4VAL(cache,numsets))
+
+#define D4XORLOWERBITS(cache,addr)    \
+        (((addr)>>D4VAL(cache,lg2blocksize)) % D4VAL(cache,numsets))
 
 #define D4ADDR2SET(cache,addr)	/* which set does addr go in? */	      \
-		(((addr)>>D4VAL(cache,lg2blocksize)) % D4VAL(cache,numsets))
+		(cache->setmapping[D4XORUPPERBITS(cache,addr)*D4VAL(cache,numsets)+D4XORLOWERBITS(cache,addr)])
 
 #define D4REFNSB(cache,mref) /* how many subblocks will mref touch? */	      \
 	((((mref).address+(mref).size-1) >> D4VAL(cache,lg2subblocksize)) -   \

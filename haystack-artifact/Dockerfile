@@ -35,8 +35,10 @@ Run pip3 install scipy pandas matplotlib
 WORKDIR /home
 
 # build the depenencies
-RUN git clone https://github.com/google/googletest && \
+RUN git config --global http.sslVerify false && \
+    git clone https://github.com/google/googletest.git && \
     cd googletest && \
+    git checkout release-1.8.1 && \
     cmake . && \
     make -j4 && \
     make install && \
@@ -68,9 +70,11 @@ RUN git clone git://repo.or.cz/barvinok.git && \
 RUN git clone git://repo.or.cz/pet.git && \
     cd pet && \
     git checkout d378c2b674f148466719ddde6d3c7e7f9ca7455b && \
+    ./get_submodules.sh && \			  
     ./autogen.sh && \
     ./configure --with-isl=system && \
     make -j4 && \
+    make check && \
     make install && \
     cd ..
 
@@ -82,7 +86,13 @@ RUN wget ftp://ftp.cs.wisc.edu/markhill/DineroIV/d4-7.tar.gz && \
     cp dineroIV /usr/local/bin && \
     cd ..
     
-RUN git clone https://github.com/atos-tools/qemu/ && \
+RUN git config --global url.https://git.qemu.org/git/.insteadOf git://git.qemu.project.org/ && \
+    git config --global url.https://git.qemu.org/git/capstone.git/.insteadOf git://git.qemu.org/capstone.git && \
+    git config --global url.https://git.qemu.org/git/keycodemapdb.git/.insteadOf git://git.qemu.org/keycodemapdb.git && \
+    git config --global url.https://git.qemu.org/git/dtc.git/.insteadOf git://git.qemu-project.org/dtc.git && \
+    git config --global http.sslVerify false && \
+    git config --global https.sslVerify false && \
+    git clone https://github.com/atos-tools/qemu.git && \
     cd qemu && \
     git fetch && \
     git checkout stable-3.0.plugins && \
@@ -125,6 +135,7 @@ RUN cd haystack && \
     make -j4 StackDistance && \
     cp ./src/StackDistance ../../experiments/executables/polycache && \
     cd ../../
+
 
 
 

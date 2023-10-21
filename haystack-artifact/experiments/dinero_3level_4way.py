@@ -6,13 +6,12 @@ import re
 import sys
 
 BENCHMARK = sys.argv[1]
-
 POLYBENCH = "./benchmarks/polybench_large/"
-BINARY = "./data/polybench_large/"
-OUTPUT = "./data/polybench_large/acc_din_euler_assoc_O2.csv"
+BINARY = "./executables/3level/4way/"
+OUTPUT = "./data/polybench_large/3level_4way.csv"
 ITERATIONS = 1
 
-DINERO_ARGS = "-l1-dsize 32768 -l1-dbsize 64 -l1-dassoc 8 -l1-dccc -l1-drepl l -l2-dsize 524288 -l2-dbsize 64 -l2-dassoc 8 -l2-dccc -l2-drepl l -l3-dsize 4194304 -l3-dbsize 64 -l3-dassoc 16 -l3-dccc -l3-drepl l"
+DINERO_ARGS = "-l1-dsize 32768 -l1-dbsize 64 -l1-dassoc 4 -l1-dccc -l1-drepl l -l2-dsize 524288 -l2-dbsize 64 -l2-dassoc 8 -l2-dccc -l2-drepl l -l3-dsize 4194304 -l3-dbsize 64 -l3-dassoc 16 -l3-dccc -l3-drepl l"
 
 class PolyBenchDineroBenchmark(bm.Benchmark):
 
@@ -75,7 +74,7 @@ class PolyBenchDineroBenchmark(bm.Benchmark):
     ms = [p.findall(output) for p in ps]
     
     if None not in ms:
-      vals = [ms[0][0], ms[1][0], ms[2][0], ms[3][0], ms[0][1], ms[1][1], ms[2][1], ms[3][1]]
+      vals = [ms[0][0], ms[1][0], ms[2][0], ms[3][0], ms[0][1], ms[1][1], ms[2][1], ms[3][1],ms[0][2], ms[1][2], ms[2][2], ms[3][2]]
       return [int(v) for v in vals]
 
     print("Couldn't extract the cache misses for " + b)
@@ -87,7 +86,7 @@ class PolyBenchDineroBenchmark(bm.Benchmark):
 
 
   def gen_header(self, n):
-    return ["kernel", "compulsory1", "capacity1", "conflict1", "demand_fetches1", "compulsory2", "capacity2", "conflict2", "demand_fetches2"]
+    return ["kernel", "compulsory1", "capacity1", "conflict1", "demand_fetches1", "compulsory2", "capacity2", "conflict2", "demand_fetches2","compulsory3", "capacity3", "conflict3", "demand_fetches3"]
       
 
 if __name__ == "__main__":
