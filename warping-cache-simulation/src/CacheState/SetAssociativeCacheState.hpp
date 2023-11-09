@@ -65,7 +65,7 @@ private:
 
   void ComputeXORSetIndex();
 
-  int clog2(size_t x);
+  int clog2(size_t x) const;
 
   [[nodiscard]] size_t ComputeSetIndex(const CacheAccess &access) const;
 

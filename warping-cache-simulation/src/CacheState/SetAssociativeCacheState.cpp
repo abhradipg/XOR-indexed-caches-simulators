@@ -10,7 +10,7 @@ SetAssociativeCacheState::SetAssociativeCacheState(
   assert(GlobalVars::lineSize == cacheSettings.lineSize);
   assert(GlobalVars::nCacheSetsByCacheLevel[this->cacheLevel] ==
          cacheSettings.nCacheSets);
-  computeXORSetIndex(const nSets); // build the map
+  ComputeXORSetIndex(); // build the map
 }
 
 CacheAccessResult
@@ -156,21 +156,22 @@ void SetAssociativeCacheState::ComputeXORSetIndex() {
 }
 
 int
-SetAssociativeCacheState::clog2 (size_t x){
+SetAssociativeCacheState::clog2(size_t x) const {
   int i;
-  for (i = -1;  x != 0;  i++)
-    x >>= 1;
+  size_t y = x;
+  for (i = -1;  y != 0;  i++)
+    y >>= 1;
   return i;
 }
 
 size_t
 SetAssociativeCacheState::ComputeSetIndex(const CacheAccess &access) const {
     assert(this->nSets > 0);
-    size_t nSets = this->nSets;
-    size_t lowerBits = access.GetMemoryBlockId() % nSets;
-    size_t nBits = clog2(nSets);
+    size_t nsets = this->nSets;
+    size_t lowerBits = access.GetMemoryBlockId() % nsets;
+    size_t nBits = clog2(nsets);
     nBits = nBits < 0 ? 0: nBits;
-    size_t higherBits = (access.GetMemoryBlockId() >> nBits) % nSets;
+    size_t higherBits = (access.GetMemoryBlockId() >> nBits) % nsets;
     return this->setMapping[higherBits * nSets + lowerBits]; //mapping is computed in the constructor
 }
 
