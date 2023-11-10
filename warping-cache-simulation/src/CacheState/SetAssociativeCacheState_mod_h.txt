@@ -61,8 +61,6 @@ private:
 
   void RotateCacheSetsLeft(size_t nRotations);
 
-  int clog2(size_t x) const;
-
   [[nodiscard]] size_t ComputeSetIndex(const CacheAccess &access) const;
 
   [[nodiscard]] std::vector<std::unique_ptr<FullyAssociativeCacheState>>

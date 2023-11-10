@@ -76,26 +76,9 @@ void SetAssociativeCacheState::RotateCacheSetsLeft(size_t nRotations) {
               this->cacheSetStates.end());
 }
 
-int
-SetAssociativeCacheState::clog2(size_t x) const {
-  int i;
-  size_t y = x;
-  for (i = -1;  y != 0;  i++)
-    y >>= 1;
-  return i;
-}
-
 size_t
 SetAssociativeCacheState::ComputeSetIndex(const CacheAccess &access) const {
-    std::cout << "Computing set index\n";
-    assert(this->nSets > 0);
-    size_t nsets = this->nSets;
-    size_t nBits = clog2(nsets);
-    nBits = nBits < 0 ? 0: nBits;
-    size_t index = ((access.GetMemoryBlockId() >> (nBits << 1)) ^	\
-		    (access.GetMemoryBlockId() >> nBits) ^		\
-		    (access.GetMemoryBlockId())) % nsets;
-    return index;
+  return access.GetMemoryBlockId() % this->nSets;
 }
 
 std::vector<std::unique_ptr<FullyAssociativeCacheState>>
